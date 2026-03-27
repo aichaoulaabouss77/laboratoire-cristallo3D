@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Labo Cristallographique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Laboratoire Cristallographique</h2>
+
+<div>
+    <button onclick="loadStructure('SC')">Cubique simple</button>
+    <button onclick="loadStructure('BCC')">Cubique centré</button>
+    <button onclick="loadStructure('FCC')">Faces centrées</button>
+</div>
+
+<div id="info"></div>
+<div id="container"></div>
+
+<!-- THREE (version stable) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- CONTROLES -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+
+<!-- TON SCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>
