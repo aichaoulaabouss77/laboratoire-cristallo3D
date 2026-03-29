@@ -1,31 +1,71 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Labo Cristallographique</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Laboratoire Cristallo 3D</title>
+
+<style>
+body{
+ font-family: Arial;
+ text-align:center;
+ background:#f0f2f5;
+}
+
+.container{
+ display:flex;
+ justify-content:center;
+ gap:30px;
+ margin-top:40px;
+}
+
+.card{
+ background:white;
+ padding:20px;
+ border-radius:12px;
+ box-shadow:0 0 10px gray;
+ width:250px;
+}
+
+button{
+ padding:10px 20px;
+ background:#007bff;
+ color:white;
+ border:none;
+ border-radius:6px;
+ cursor:pointer;
+}
+</style>
 </head>
+
 <body>
 
-<h2>Laboratoire Cristallographique</h2>
+<h1>🔬 Laboratoire de Cristallographie 3D</h1>
+<p>Choisissez une structure cristalline</p>
 
-<div>
-    <button onclick="loadStructure('SC')">Cubique simple</button>
-    <button onclick="loadStructure('BCC')">Cubique centré</button>
-    <button onclick="loadStructure('FCC')">Faces centrées</button>
+<div class="container">
+
+<div class="card">
+<h2>Cubique Simple</h2>
+<a href="sc.html">
+<button>Visualiser en 3D</button>
+</a>
 </div>
 
-<div id="info"></div>
-<div id="container"></div>
+<div class="card">
+<h2>Cubique Centré (BCC)</h2>
+<a href="bcc.html">
+<button>Visualiser en 3D</button>
+</a>
+</div>
 
-<!-- THREE (version stable) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<div class="card">
+<h2>Faces Centrées (FCC)</h2>
+<a href="fcc.html">
+<button>Visualiser en 3D</button>
+</a>
+</div>
 
-<!-- CONTROLES -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
-
-<!-- TON SCRIPT -->
-<script src="script.js"></script>
+</div>
 
 </body>
 </html>
