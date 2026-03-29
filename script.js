@@ -1,3 +1,5 @@
+let rotating = true;
+let speed = 0.02;
 let scene, camera, renderer, group, controls;
 
 // INITIALISATION
@@ -41,8 +43,9 @@ function init() {
 }
 
 // ANIMATION
-function animate() {
-    requestAnimationFrame(animate);
+if(rotating){
+    cube.rotation.y += speed;
+}
     controls.update();
     renderer.render(scene, camera);
 }
@@ -132,3 +135,14 @@ function loadStructure(type){
 
 // LANCER AU DÉMARRAGE
 init();
+function startRotation(){
+    rotating = true;
+}
+
+function stopRotation(){
+    rotating = false;
+}
+
+function changeSpeed(value){
+    speed = parseFloat(value);
+}
