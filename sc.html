@@ -5,10 +5,48 @@
 <title>Cubique Simple</title>
 </head>
 
-<body>
+<body><div class="controls">
+    <button onclick="startRotation()">ON</button>
+    <button onclick="stopRotation()">OFF</button>
+
+    <label>Vitesse :</label>
+    <input type="range" min="0" max="0.1" step="0.01"
+           value="0.02"
+           oninput="changeSpeed(this.value)">
+</div>
 
 <h1>Structure Cubique Simple</h1>
 <p>Visualisation 3D ici.</p>
 
 </body>
 </html>
+/* ===== CONTROLES 3D ===== */
+
+.controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.controls button {
+    background: #00aaff;
+    border: none;
+    padding: 6px 12px;
+    margin: 5px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.controls button:hover {
+    background: #0077aa;
+}
+
+.controls input {
+    width: 120px;
+}
