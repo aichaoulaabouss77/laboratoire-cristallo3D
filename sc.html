@@ -3,9 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Cubique Simple</title>
+
+<!-- Lier le CSS -->
+<link rel="stylesheet" href="style.css">
+
 </head>
 
-<body><div class="controls">
+<body>
+
+<div class="controls">
     <button onclick="startRotation()">ON</button>
     <button onclick="stopRotation()">OFF</button>
 
@@ -17,6 +23,15 @@
 
 <h1>Structure Cubique Simple</h1>
 <p>Visualisation 3D ici.</p>
+
+<!-- 🔥 Zone où la 3D va apparaître -->
+<div id="scene-container"></div>
+
+<!-- Bibliothèque 3D -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- Ton script -->
+<script src="script.js"></script>
 
 </body>
 </html>
