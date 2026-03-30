@@ -1,1 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cubique Centré BCC</title>
+</head>
 
+<body data-structure="bcc">
+
+<h1>Cubique Centré (BCC)</h1>
+
+<div id="scene-container"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+
+<script src="crystal.js"></script>
+
+</body>
+</html>
