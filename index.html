@@ -1,71 +1,134 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<title>Laboratoire Cristallo 3D</title>
+    <meta charset="UTF-8">
+    <title>Laboratoire Cristallographie 3D</title>
 
-<style>
-body{
- font-family: Arial;
- text-align:center;
- background:#f0f2f5;
-}
+    <!-- STYLE -->
+    <style>
 
-.container{
- display:flex;
- justify-content:center;
- gap:30px;
- margin-top:40px;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+            text-align: center;
+        }
 
-.card{
- background:white;
- padding:20px;
- border-radius:12px;
- box-shadow:0 0 10px gray;
- width:250px;
-}
+        header {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px;
+        }
 
-button{
- padding:10px 20px;
- background:#007bff;
- color:white;
- border:none;
- border-radius:6px;
- cursor:pointer;
-}
-</style>
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            width: 280px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card h2 {
+            color: #1e3a8a;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #444;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #e5e7eb;
+        }
+
+    </style>
 </head>
 
 <body>
 
-<h1>🔬 Laboratoire de Cristallographie 3D</h1>
-<p>Choisissez une structure cristalline</p>
+<header>
+    <h1>🔬 Laboratoire Virtuel de Cristallographie 3D</h1>
+    <p>Visualisation interactive des structures cristallines cubiques</p>
+</header>
 
 <div class="container">
 
-<div class="card">
-<h2>Cubique Simple</h2>
-<a href="sc.html">
-<button>Visualiser en 3D</button>
-</a>
+    <!-- Cubique Simple -->
+    <div class="card">
+        <h2>Cubique Simple (SC)</h2>
+        <p>
+            Structure avec des atomes uniquement aux sommets du cube.
+        </p>
+
+        <a class="btn" href="sc.html">
+            Visualiser en 3D
+        </a>
+    </div>
+
+    <!-- Cubique Centré -->
+    <div class="card">
+        <h2>Cubique Centré (BCC)</h2>
+        <p>
+            Un atome au centre du cube en plus des sommets.
+        </p>
+
+        <a class="btn" href="bcc.html">
+            Visualiser en 3D
+        </a>
+    </div>
+
+    <!-- Cubique Faces Centrées -->
+    <div class="card">
+        <h2>Cubique Faces Centrées (FCC)</h2>
+        <p>
+            Atomes situés sur chaque face du cube.
+        </p>
+
+        <a class="btn" href="fcc.html">
+            Visualiser en 3D
+        </a>
+    </div>
+
 </div>
 
-<div class="card">
-<h2>Cubique Centré (BCC)</h2>
-<a href="bcc.html">
-<button>Visualiser en 3D</button>
-</a>
-</div>
-
-<div class="card">
-<h2>Faces Centrées (FCC)</h2>
-<a href="fcc.html">
-<button>Visualiser en 3D</button>
-</a>
-</div>
-
-</div>
+<footer>
+    Laboratoire pédagogique — Cristallographie 3D
+</footer>
 
 </body>
 </html>
