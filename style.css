@@ -76,3 +76,10 @@ body {
   border-radius: 10px;
   color: white;
 }
+/* ===== FIX FINAL (NE RIEN SUPPRIMER) ===== */
+.controls {
+    position: fixed !important;   /* 🔥 très important */
+    top: 10px !important;
+    left: 10px !important;
+    z-index: 999999 !important;   /* 🔥 au-dessus de tout */
+}
