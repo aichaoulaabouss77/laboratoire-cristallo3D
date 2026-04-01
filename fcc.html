@@ -2,9 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FCC</title>
-<style>body{margin:0;overflow:hidden}</style>
+<title>FCC avec liaisons</title>
+<style>
+body{margin:0;overflow:hidden;font-family:Arial}
+
+.controls{
+position:fixed;
+top:10px;
+left:10px;
+background:white;
+padding:10px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+</style>
 </head>
+
 <body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -25,8 +38,11 @@ document.body.appendChild(renderer.domElement);
 
 const controls=new THREE.OrbitControls(camera,renderer.domElement);
 
-scene.add(new THREE.AmbientLight(0xffffff,0.6));
+scene.add(new THREE.AmbientLight(0xffffff,0.8));
 
+let atoms=[]; // stocker positions
+
+// 🔵 créer atome
 function atom(x,y,z,color){
 const s=new THREE.Mesh(
 new THREE.SphereGeometry(0.15,32,32),
@@ -34,15 +50,18 @@ new THREE.MeshPhongMaterial({color})
 );
 s.position.set(x,y,z);
 scene.add(s);
+
+// stock position
+atoms.push(new THREE.Vector3(x,y,z));
 }
 
-/* coins */
+// 🔷 COINS
 [
 [-1,-1,-1],[1,-1,-1],[-1,1,-1],[1,1,-1],
 [-1,-1,1],[1,-1,1],[-1,1,1],[1,1,1]
 ].forEach(v=>atom(v[0],v[1],v[2],0x2196f3));
 
-/* centres faces */
+// 🟠 CENTRES DES FACES
 atom(0,0,1,0xff9800);
 atom(0,0,-1,0xff9800);
 atom(0,1,0,0xff9800);
@@ -50,19 +69,90 @@ atom(0,-1,0,0xff9800);
 atom(1,0,0,0xff9800);
 atom(-1,0,0,0xff9800);
 
+
+// 🔗 CRÉER LES LIAISONS
+let bonds=[];
+let showBonds=true;
+
+function createBonds(){
+const material=new THREE.LineBasicMaterial({color:0x000000});
+
+for(let i=0;i<atoms.length;i++){
+for(let j=i+1;j<atoms.length;j++){
+
+let d=atoms[i].distanceTo(atoms[j]);
+
+// distance typique voisins CFC
+if(d<2.1){  
+
+const points=[
+atoms[i],
+atoms[j]
+];
+
+const geometry=new THREE.BufferGeometry().setFromPoints(points);
+const line=new THREE.Line(geometry,material);
+
+scene.add(line);
+bonds.push(line);
+}
+}
+}
+}
+
+createBonds();
+
+
+// 🎛️ CONTROLES
+let rotating=true;
+let speed=0.02;
+
+document.getElementById("toggleRotation").onclick=()=>{
+rotating=!rotating;
+};
+
+document.getElementById("speedControl").oninput=(e)=>{
+speed=parseFloat(e.target.value);
+};
+
+document.getElementById("toggleBonds").onclick=()=>{
+showBonds=!showBonds;
+bonds.forEach(b=>b.visible=showBonds);
+};
+
+
+// 🎥 ANIMATION
 function animate(){
 requestAnimationFrame(animate);
+
+if(rotating){
+scene.rotation.y+=speed;
+}
+
 controls.update();
 renderer.render(scene,camera);
 }
 animate();
 
+
+// 🔄 RESPONSIVE
+window.addEventListener("resize",()=>{
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
+
 </script>
+
+<!-- 🎛️ INTERFACE -->
 <div class="controls">
-  <button id="toggleRotation">ON</button>
+  <button id="toggleRotation">Rotation ON/OFF</button><br><br>
 
   <label>Vitesse :</label>
-  <input type="range" id="speedControl" min="0" max="0.1" step="0.005" value="0.02">
+  <input type="range" id="speedControl" min="0" max="0.1" step="0.005" value="0.02"><br><br>
+
+  <button id="toggleBonds">Afficher / Cacher liaisons</button>
 </div>
+
 </body>
 </html>
