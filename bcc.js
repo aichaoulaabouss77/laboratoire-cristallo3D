@@ -20,7 +20,60 @@ body{margin:0;text-align:center;background:#f2f2f2;}
 <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
 
 <script>
+// ===== AJOUT ROTATION + CONTROLES (SANS RIEN MODIFIER) =====
 
+// variables
+let isRotating = true;
+let speed = 0.02;
+
+// créer un groupe et récupérer tous les objets de la scène
+const crystalGroup = new THREE.Group();
+
+// déplacer automatiquement tous les objets (atomes) dans le groupe
+scene.children.forEach(obj => {
+    if (obj.type === "Mesh") {
+        crystalGroup.add(obj);
+    }
+});
+
+// ajouter le groupe à la scène
+scene.add(crystalGroup);
+
+// connecter les boutons après chargement
+window.addEventListener("load", function(){
+
+    const toggleBtn = document.getElementById("toggleRotation");
+    const speedControl = document.getElementById("speedControl");
+
+    if(toggleBtn){
+        toggleBtn.onclick = function(){
+            isRotating = !isRotating;
+            toggleBtn.textContent = isRotating ? "ON" : "OFF";
+        };
+    }
+
+    if(speedControl){
+        speedControl.oninput = function(e){
+            speed = parseFloat(e.target.value);
+        };
+    }
+
+});
+
+// modifier l'animation sans toucher à ton code
+const oldAnimate = animate;
+
+animate = function(){
+    requestAnimationFrame(animate);
+
+    if(isRotating){
+        crystalGroup.rotation.y += speed;
+        crystalGroup.rotation.x += speed * 0.5;
+    }
+
+    controls.update();
+    renderer.render(scene, camera);
+};
 const scene=new THREE.Scene();
 scene.background=new THREE.Color(0xffffff);
 
